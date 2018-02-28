@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChubbyLapse"
         mc:Ignorable="d"
-        Title="ChubbyLapse" Width="640" Height="480">
+        Title="ChubbyLapse" Width="1280" Height="720">
     <Grid>
-        
+        <Button x:Name="Capture" Content="Capture" HorizontalAlignment="Center" Margin="0,0,0,50" VerticalAlignment="Bottom" Width="110"/>
+        <StatusBar HorizontalAlignment="Left" Height="30" VerticalAlignment="Bottom" Width="1272">
+            <Label x:Name="StatusLabel" Content="Program currently on standby..." HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        </StatusBar>
+        <Slider x:Name="IntervalSelector" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="124" Minimum="0.2" Value="0.2" ValueChanged="IntervalSelectorValueChanged" TickPlacement="Both" Maximum="5" TickFrequency="0.2" SmallChange="0.2"/>
+        <Label x:Name="IntervalUpdateLabel" Content="0.2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="383,212,205,211" Width="44"/>
     </Grid>
 </Window>
