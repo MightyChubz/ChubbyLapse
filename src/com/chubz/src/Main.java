@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/MainWindow.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("TestWindow");
         primaryStage.setScene(new Scene(root, 650, 450));
