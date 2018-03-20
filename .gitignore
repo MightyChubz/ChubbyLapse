@@ -1,0 +1,9 @@
+# Program genreated files.
+Frames
+config.txt
+
+# IntelliJ project files
+.idea
+*.iml
+out
+src/META-INF

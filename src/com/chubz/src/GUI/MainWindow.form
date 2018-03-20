@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.chubz.src.GUI.MainWindow">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="200" height="400"/>
+    </constraints>
+    <properties>
+      <inheritsPopupMenu value="false"/>
+      <maximumSize width="200" height="100"/>
+      <minimumSize width="200" height="100"/>
+      <preferredSize width="200" height="100"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="f7559" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="df5ff" class="javax.swing.JButton" binding="captureButton">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value="Start Capture"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
