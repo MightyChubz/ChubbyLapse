@@ -8,26 +8,27 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Program implements Runnable {
     public ScreenController screenController;
 
     private boolean isRunning;
     private Thread captureThread;
+    private ArrayList<ConfigListener> configListeners = new ArrayList<>();
+
     private int selectedDisplay;
     private int sleepTime = 250;
 
     public Program() {
-        try {
-            loadConfig();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        screenController = new ScreenController(selectedDisplay);
+        screenController = new ScreenController();
     }
 
-    private void loadConfig() throws IOException {
+    public void addConfigListener(ConfigListener listener) {
+        configListeners.add(listener);
+    }
+
+    public void loadConfig() throws IOException {
         if (!Files.exists(Paths.get("config.txt"))) {
             Files.createFile(Paths.get("config.txt"));
             selectedDisplay = 0;
@@ -36,18 +37,31 @@ public class Program implements Runnable {
 
         DataReader dataReader = new DataReader();
         Element[] elements = dataReader.read(Paths.get("config.txt"));
+        String message;
         for (Element element :
                 elements) {
             switch (element.name) {
                 case "display":
-                    System.out.println("Setting selected display...");
+                    message = "Setting selected display...";
+                    System.out.println(message);
+                    triggerListeners(message);
                     selectedDisplay = Integer.parseInt(element.value);
                     break;
                 case "sleep_interval":
-                    System.out.println("Setting delay interval...");
+                    message = "Setting delay interval...";
+                    System.out.println(message);
+                    triggerListeners(message);
                     sleepTime = Integer.parseInt(element.value);
                     break;
             }
+        }
+
+        screenController.setDisplay(selectedDisplay);
+    }
+
+    private void triggerListeners(String message) {
+        for (ConfigListener listener : configListeners) {
+            listener.onLoad(message);
         }
     }
 

@@ -13,7 +13,10 @@ public class ScreenController {
     private int imageFrame;
     private ArrayList<ImageWriteListener> onWriteListener = new ArrayList<>();
 
-    public ScreenController(int display) {
+    public ScreenController() {
+    }
+
+    public void setDisplay(int display) {
         currentDevice = GraphicsDeviceController.getDisplay(display);
     }
 
