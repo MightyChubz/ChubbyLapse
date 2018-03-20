@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class DataReader {
-    public Element[] read(String[] lines) {
+    private Element[] read(String[] lines) {
         return Parser.ParseLines(lines);
     }
 

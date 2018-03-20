@@ -10,8 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Program implements Runnable {
+    public ScreenController screenController;
+
     private boolean isRunning;
-    private ScreenController screenController;
     private Thread captureThread;
     private int selectedDisplay;
     private int sleepTime = 250;
