@@ -1,10 +1,10 @@
 package com.chubz.src.data.storage;
 
-public class Element {
+public class Element<T> {
     public String name;
-    public String value;
+    public T value;
 
-    Element(String name, String value) {
+    Element(String name, T value) {
         this.name = name;
         this.value = value;
     }

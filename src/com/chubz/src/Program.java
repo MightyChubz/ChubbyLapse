@@ -38,7 +38,7 @@ public class Program implements Runnable {
         configListeners.add(listener);
     }
 
-    public void loadConfig() throws IOException {
+    public void loadConfig() throws IOException, WrongTypeException {
         if (!Files.exists(Paths.get(CONFIG_NAME))) {
             Path path = Files.createFile(Paths.get(CONFIG_NAME));
             LinkedList<String> data = new LinkedList<>(Files.readAllLines(path));
@@ -61,13 +61,22 @@ public class Program implements Runnable {
                     message = "Setting selected display...";
                     System.out.println(message);
                     triggerListeners(message);
-                    selectedDisplay = Integer.parseInt(element.value);
+                    if (element.value instanceof Integer) {
+                        selectedDisplay = (int) element.value;
+                    } else {
+                        throw new WrongTypeException(element.name);
+                    }
                     break;
                 case "sleep_interval":
                     message = "Setting delay interval...";
                     System.out.println(message);
                     triggerListeners(message);
-                    sleepTime = Integer.parseInt(element.value);
+
+                    if (element.value instanceof Integer) {
+                        sleepTime = (int) element.value;
+                    } else {
+                        throw new WrongTypeException(element.name);
+                    }
                     break;
             }
         }

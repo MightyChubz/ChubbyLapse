@@ -1,6 +1,7 @@
 package com.chubz.src.gui;
 
 import com.chubz.src.Program;
+import com.chubz.src.WrongTypeException;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,7 +30,7 @@ public class MainWindow implements Initializable {
     public void load() {
         try {
             program.loadConfig();
-        } catch (IOException e) {
+        } catch (IOException | WrongTypeException e) {
             e.printStackTrace();
         }
     }
