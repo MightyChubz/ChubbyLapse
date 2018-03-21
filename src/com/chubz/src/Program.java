@@ -1,14 +1,22 @@
 package com.chubz.src;
 
 import com.chubz.src.capture.ScreenController;
+import com.chubz.src.data.DataGenerator;
 import com.chubz.src.data.storage.DataReader;
 import com.chubz.src.data.storage.Element;
 
+import javax.xml.crypto.Data;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Program implements Runnable {
     private static final String CONFIG_NAME = "Config.conf";
@@ -32,9 +40,15 @@ public class Program implements Runnable {
 
     public void loadConfig() throws IOException {
         if (!Files.exists(Paths.get(CONFIG_NAME))) {
-            Files.createFile(Paths.get(CONFIG_NAME));
-            selectedDisplay = 0;
-            return;
+            Path path = Files.createFile(Paths.get(CONFIG_NAME));
+            LinkedList<String> data = new LinkedList<>(Files.readAllLines(path));
+            DataGenerator.addComment(data, "This is the current display that will be used.");
+            DataGenerator.addVariable(data, "display", 0);
+            DataGenerator.addBreak(data);
+            DataGenerator.addComment(data, "This is how long the program will pause before taking another " +
+                    "screenshot.");
+            DataGenerator.addVariable(data, "sleep_interval", 250);
+            Files.write(path, data);
         }
 
         DataReader dataReader = new DataReader();
