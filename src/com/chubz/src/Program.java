@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Program implements Runnable {
+    private static final String CONFIG_NAME = "Config.conf";
+
     public ScreenController screenController;
 
     private boolean isRunning;
@@ -29,14 +31,14 @@ public class Program implements Runnable {
     }
 
     public void loadConfig() throws IOException {
-        if (!Files.exists(Paths.get("config.txt"))) {
-            Files.createFile(Paths.get("config.txt"));
+        if (!Files.exists(Paths.get(CONFIG_NAME))) {
+            Files.createFile(Paths.get(CONFIG_NAME));
             selectedDisplay = 0;
             return;
         }
 
         DataReader dataReader = new DataReader();
-        Element[] elements = dataReader.read(Paths.get("config.txt"));
+        Element[] elements = dataReader.read(Paths.get(CONFIG_NAME));
         String message;
         for (Element element :
                 elements) {
